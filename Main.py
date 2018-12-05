@@ -1,9 +1,26 @@
 from tkinter import *
+import PIL.Image
+import PIL.ImageTk
 import GUIProcessing
 
 class Application(Frame):
     def say_hi(self):
         print("hi there, everyone!")
+
+    def createFrame(self):
+
+        # Initialize Frame
+        self.canvas = Canvas(self)
+        self.canvas["width"] = 600
+        self.canvas["height"] = 347
+
+        # Create Image
+        img = PIL.Image.open("PrettyImage.png")
+        self.photo = PIL.ImageTk.PhotoImage(img)
+        self.canvas.create_image(20, 20, anchor = NW, image = self.photo)
+
+        # Pack
+        self.canvas.pack()
 
     def createWidgets(self):
 
@@ -43,6 +60,7 @@ class Application(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.pack()
+        self.createFrame()
         self.createWidgets()
 
 root = Tk()
