@@ -30,6 +30,7 @@ class Application(Frame):
         self.acres["text"] = "Farm Size (in acres)"
         self.acres.pack({"side": "left"})
 
+
         # Input Field (Tree Species)
         # List of species
         breeds = {"Balsalm Fir", "Fraser Fir", "Canaan Fir", "Douglass Fir", "Grand Fir", "Noble Fir", "Concolor Fir", "White Pine", "Scotch Pine", "Virginia Pine", "Blue Spruce", "Norway Spruce", "White Spruce", "Arizona Cypress", "Leyland Cypress", "Red Cedar"}
