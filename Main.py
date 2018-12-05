@@ -2,6 +2,7 @@ from tkinter import *
 import PIL.Image
 import PIL.ImageTk
 import GUIProcessing
+import Variables
 
 class Application(Frame):
     def say_hi(self):
@@ -33,7 +34,7 @@ class Application(Frame):
 
         # Spam Hello
         self.hi_there = Button(self)
-        self.hi_there["text"] = "Hello",
+        self.hi_there["text"] = "Submit Farm"
         self.hi_there["command"] = self.say_hi
         self.hi_there.pack({"side": "left"})
 
@@ -49,12 +50,10 @@ class Application(Frame):
 
 
         # Input Field (Tree Species)
-        # List of species
-        breeds = {"Balsalm Fir", "Fraser Fir", "Canaan Fir", "Douglass Fir", "Grand Fir", "Noble Fir", "Concolor Fir", "White Pine", "Scotch Pine", "Virginia Pine", "Blue Spruce", "Norway Spruce", "White Spruce", "Arizona Cypress", "Leyland Cypress", "Red Cedar"}
         # Selection container
         self.breedSelector = StringVar(self)
         # Dropdown
-        self.breedMenu = OptionMenu(self, self.breedSelector, *breeds)
+        self.breedMenu = OptionMenu(self, self.breedSelector, *Variables.breeds)
         self.breedMenu.pack({"side": "left"})
 
     def __init__(self, master=None):
