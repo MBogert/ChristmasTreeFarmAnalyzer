@@ -3,10 +3,16 @@ import json
 import requests 
 import io
 import config # Follow README for instructions on using API Key
+import Variables
 
 def validateAcreage(userInput):
 	if not(userInput in '0123456789.') or (int(userInput) <= 0):
 		print("ACREAGE MUST BE EXPRESSED IN A POSITIVE NUMBER")
+
+
+def validateAge(userInput):
+	if not(userInput in '0123456789') or (int(userInput) <= 0) or (float(userInput) % int(userInput) > 0):
+		print("AGE MUST BE EXPRESSED IN A POSITIVE INTEGER")
 
 def validateAddress(userInput):
 	# Use MapQuest's API to retrieve Lat/Lon
@@ -40,9 +46,31 @@ def validateAddress(userInput):
 	else:
 		print("Need to return address")
 
-def evaluateGeoCodeQuality(qualityCode):
-	print("Fill")
 
-# Assumes file is already opened
+def evaluateGeoCodeQuality(qualityCode):
+	# Determine confidence of the geo code's quality (this could be enhanced, as it only checks granularity)
+	granularity = qualityCode[:2]
+	if(granularity in Variables.validGranularity):
+		print("Valid geocode")
+		return true
+	else:
+		print("Invalid geocode")
+		return false
+
+
 def returnLatLon(jsonFile):
-	print ("Fill")
+	# Open reader and load json file
+	f = io.open(jsonFile, 'r', encoding='utf-8-sig')
+	data = json.load(f)
+
+	# Retrieve lat/lon values from the json file
+	for element in data['results']:
+		for location in element['locations']:
+			for field,value in location.items():
+				if "latLng" in field: 
+					# Return value
+					f.close(jsonFile)
+					return ("Lat: " + value["lat"] + ", Lng: " + value["lng"])
+	# Indicates no Lat/Lng values in the json
+	return "NULL"
+

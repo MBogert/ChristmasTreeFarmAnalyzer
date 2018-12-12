@@ -48,13 +48,17 @@ class Application(Frame):
         self.acres["text"] = "Farm Size (in acres)"
         self.acres.pack({"side": "left"})
 
-
         # Input Field (Tree Species)
         # Selection container
         self.breedSelector = StringVar(self)
         # Dropdown
         self.breedMenu = OptionMenu(self, self.breedSelector, *Variables.breeds)
         self.breedMenu.pack({"side": "left"})
+
+        # Input Field (current age of tree crops)
+        self.treeAge = Entry(self)
+        self.treeAge["text"] = "Age of trees (in years)"
+        self.treeAge.pack({"side": "left"})
 
     def __init__(self, master=None):
         Frame.__init__(self, master)

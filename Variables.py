@@ -11,11 +11,5 @@ tonsPerAcre = 12 # Assumes 7 ft tall Fraser Firs with 5x5 spacing <-- DEFAULT NU
 averageYears = 7
 
 # Valid GeoCode Quality Codes for addresses
-# P1
-# L1
-# I1
-# B1
-# B2
-# B3
-validCodes = {}
-invalidCode = "X"
+# Granularity Codes
+validGranularity = {"P1", "L1", "I1", "B1", "B2", "B3"}
