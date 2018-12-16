@@ -3,6 +3,7 @@ import PIL.Image
 import PIL.ImageTk
 import GUIProcessing
 import Variables
+# Successfully moved project to Windows computer
 
 class Application(Frame):
 
