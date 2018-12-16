@@ -7,12 +7,16 @@ import Variables
 
 def validateAcreage(userInput):
 	if not(userInput in '0123456789.') or (int(userInput) <= 0):
-		print("ACREAGE MUST BE EXPRESSED IN A POSITIVE NUMBER")
+		return Variables.invalidAcreage
+	else:
+		return Variables.validInput
 
 
 def validateAge(userInput):
 	if not(userInput in '0123456789') or (int(userInput) <= 0) or (float(userInput) % int(userInput) > 0):
-		print("AGE MUST BE EXPRESSED IN A POSITIVE INTEGER")
+		return Variables.invalidAge
+	else:
+		return Variables.validInput
 
 def validateAddress(userInput):
 	# Use MapQuest's API to retrieve Lat/Lon
@@ -41,20 +45,20 @@ def validateAddress(userInput):
 
 	# If the GeoCode quality is insufficient, throw an error
 	if not(evaluateGeoCodeQuality(geoCodeQuality)):
-		print("ERROR: ADDRESS INVALID")
+		return Variables.invalidAddress
 	# Otherwise, retrieve lat/lon from json and return
 	else:
-		print("Need to return address")
+		return Variables.validInput
 
 
 def evaluateGeoCodeQuality(qualityCode):
 	# Determine confidence of the geo code's quality (this could be enhanced, as it only checks granularity)
 	granularity = qualityCode[:2]
 	if(granularity in Variables.validGranularity):
-		print("Valid geocode")
+		print("Valid geocode") #Debug
 		return true
 	else:
-		print("Invalid geocode")
+		print("Invalid geocode") #Debug
 		return false
 
 
@@ -73,4 +77,42 @@ def returnLatLon(jsonFile):
 					return ("Lat: " + value["lat"] + ", Lng: " + value["lng"])
 	# Indicates no Lat/Lng values in the json
 	return "NULL"
+
+def processInput(age, acreage, address, breed):
+	# Retrieve Values
+	print("Starting Input Processing")
+
+	# Validate
+	print("Checking validation")
+	validation = validateInput(age, acreage, address)
+
+	if(validation != Variables.validationMessages[Variables.validInput]):
+		return validation
+	else:
+		print("Do stuff")
+
+def validateInput(age, acreage, address):
+	print("Starting validation Check")
+
+	# Return Validation Codes
+	ageCheck = validateAge(age)
+	acreCheck = validateAcreage(acreage)
+	addressCheck = validateAddress(address)
+
+	# Check Codes and return message appropriately
+	if(ageCheck != Variables.validInput):
+		return Variables.validationMessages[ageCheck]
+	elif(acreCheck != Variables.validInput):
+		return Variables.validationMessages[acreCheck]
+	elif(addressCheck != Variables.validInput):
+		return Variables.validationMessages[addressCheck]
+	else:
+		return Variables.validationMessages[Variables.validInput]
+
+	
+
+
+
+
+	
 

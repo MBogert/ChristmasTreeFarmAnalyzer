@@ -5,8 +5,6 @@ import GUIProcessing
 import Variables
 
 class Application(Frame):
-    def say_hi(self):
-        print("hi there, everyone!")
 
     def createFrame(self):
 
@@ -33,10 +31,10 @@ class Application(Frame):
         self.QUIT.pack({"side": "left"})
 
         # Spam Hello
-        self.hi_there = Button(self)
-        self.hi_there["text"] = "Submit Farm"
-        self.hi_there["command"] = self.say_hi
-        self.hi_there.pack({"side": "left"})
+        self.submit = Button(self)
+        self.submit["text"] = "Submit Farm"
+        self.submit["command"] = self.evaluateInput
+        self.submit.pack({"side": "left"})
 
         # Input Field (Address)
         self.address = Entry(self)
@@ -59,6 +57,13 @@ class Application(Frame):
         self.treeAge = Entry(self)
         self.treeAge["text"] = "Age of trees (in years)"
         self.treeAge.pack({"side": "left"})
+
+    def evaluateInput(self):
+        age = self.treeAge.get()
+        acreage = self.acres.get()
+        address = self.address.get()
+        # TODO Breed
+
 
     def __init__(self, master=None):
         Frame.__init__(self, master)

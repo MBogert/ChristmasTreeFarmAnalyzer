@@ -13,3 +13,17 @@ averageYears = 7
 # Valid GeoCode Quality Codes for addresses
 # Granularity Codes
 validGranularity = {"P1", "L1", "I1", "B1", "B2", "B3"}
+
+# Validation Codes and Errors
+# Codes
+validInput = 0
+invalidAddress = 1
+invalidAge = 2
+invalidAcreage = 3
+# Messages
+validationMessages = {
+	validInput : "Valid",
+	invalidAddress : "Invalid Address",
+	invalidAge : "Invalid Age",
+	invalidAcreage : "Invalid Acreage"
+}
